@@ -128,34 +128,35 @@ function [fig, pdx, cox_hr]=fPlotKaplanMeierCurve_DVx(cur_CGobj,volume_val,split
         sa_curve_above=1-sa.mSurvivalCurve{2};
         sa_times_above(sa_times_above<0)=0;%set negative onset to t=0
         
-        h_km(1)=stairs(sa_times_below./12,sa_curve_below,'LineWidth',2);
+        h_km(1)=stairs(sa_times_below./12,sa_curve_below,'LineWidth',2.5);
         plot(sa_times_below(sa.mCensorStatistics{1}(:,1))./12,...
-            sa_curve_below(sa.mCensorStatistics{1}(:,1)),'+','MarkerSize',20);
+            sa_curve_below(sa.mCensorStatistics{1}(:,1)),'+','MarkerSize',22,'LineWidth',1.1);
     
-        h_km(2)=stairs(sa_times_above./12,sa_curve_above,'r','LineWidth',2);
+        h_km(2)=stairs(sa_times_above./12,sa_curve_above,'r','LineWidth',2.5);
         plot(sa_times_above(sa.mCensorStatistics{2}(:,1))./12,...
-            sa_curve_above(sa.mCensorStatistics{2}(:,1)),'r+','MarkerSize',20);
+            sa_curve_above(sa.mCensorStatistics{2}(:,1)),'r+','MarkerSize',22,'LineWidth',1.1);
         
         str_pval2 = ['Log-Rank p-value = ',num2str(pdx,'%3.1e\n'),10,...
             'HR = ',num2str(cox_hr,'%3.1f')];
         %text(38,0.25,str_pval2,'FontSize',18,'Location',);
         if volume_val<0
         lgnd=legend(h_km,...
-            strcat('D$_{\rm{max}}\leq',num2str(dv_split,'%3.1f'),'$~Gy'),...
-            strcat('D$_{\rm{max}} >',num2str(dv_split,'%3.1f'),'$~Gy'),...
+            strcat('D$_{\rm{max}}\leq',num2str(dv_split,'%3.1f'),'$~Gy$_{10}$'),...
+            strcat('D$_{\rm{max}} >',num2str(dv_split,'%3.1f'),'$~Gy$_{10}$'),...
             'Location','Best');
             
         else
         lgnd=legend(h_km,...
-            strcat('D$_{',num2str(volume_val,'%3.1f'),'\rm{cc}}\leq',num2str(dv_split,'%3.1f'),'$~Gy'),...
-            strcat('D$_{',num2str(volume_val,'%3.1f'),'\rm{cc}} >',num2str(dv_split,'%3.1f'),'$~Gy'),...
+            strcat('D$_{',num2str(volume_val,'%3.1f'),'\rm{cc}}\leq',num2str(dv_split,'%3.1f'),'$~Gy$_{10}$'),...
+            strcat('D$_{',num2str(volume_val,'%3.1f'),'\rm{cc}} >',num2str(dv_split,'%3.1f'),'$~Gy$_{10}$'),...
             'Location','Best');
         end
-        set(lgnd,'FontSize',18);
+        set(lgnd,'FontSize',22);
+        set(lgnd,'Position',[0.6, 0.5, 0.18, 0.01]);
         h_lgnd=legend;
         set(h_lgnd,'interpreter','latex');
         
-        textbp(str_pval2,'FontSize',18);
+        textbp(str_pval2,'FontSize',22,'BackgroundColor','w','interpreter','latex');
         
         %tmp
         if num_fx>0
@@ -163,9 +164,9 @@ function [fig, pdx, cox_hr]=fPlotKaplanMeierCurve_DVx(cur_CGobj,volume_val,split
             xlim([0 70]);
         end
         set(gca,'xminortick','on','yminortick','on');
-        set(gca,'FontSize',18);
-        xlabel(['Years'],'fontsize',20);
-        ylabel(['Probability of Complication'],'fontsize',20);
+        set(gca,'FontSize',22);
+        xlabel(['Years'],'fontsize',24);
+        ylabel(['Probability of Complication'],'fontsize',24);
 
 
     end
