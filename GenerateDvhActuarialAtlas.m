@@ -82,6 +82,14 @@ elseif isequal(do_analysis,'nfz') % specifics loaded from arguments
     CGdata = CGobj_org;
     clear CGobj_org;
     
+elseif isequal(do_analysis,'cwp') % specifics loaded from arguments
+    
+   
+    atlas_file_name = [atlas_loc,analy_str,'_aoc_'];
+                       
+    load(data_loc,'CGobj_current');
+    CGdata = CGobj_current;
+    clear CGobj_current;
 elseif isequal(do_analysis,'bpx')
     
     % set altas location/name
@@ -180,8 +188,9 @@ vmax = max(mx_vols);
 
 % protect for unrealistically small min vols
 min_vols = cellfun(@(x) min(x(x>0.1)), {curCGgrp.mVolCum});
-vmin = min(min_vols);
-vmin = round(vmin/vol_bin_step)*vol_bin_step;%round to nearest bin step
+% vmin = min(min_vols);
+% vmin = round(vmin/vol_bin_step)*vol_bin_step;%round to nearest bin step
+vmin=0.1;
 vol_bins = [log10(vmin) : vol_bin_step : log10(vmax)+vol_bin_step];
 vol_bins = [0, 10.^vol_bins];
 

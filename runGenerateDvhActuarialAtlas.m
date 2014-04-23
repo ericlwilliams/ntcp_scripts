@@ -1,6 +1,6 @@
 function runGenerateDvhActuarialAtlas
 
-analy_str='nfz';
+analy_str='cwp';
 
 %% TODO Pooled analysis
 % need to incorporate institutes, somehow
@@ -31,6 +31,15 @@ elseif isequal(analy_str,'bpx');
     
     data_loc_str='Z:/elw/MATLAB/bpx_analy/meta_data/BPx_DiVj_DVHs_fx-1_a2bInf.mat';
     atlas_loc_str='Z:/elw/MATLAB/bpx_analy/atlases/';
+    
+elseif isequal(analy_str,'cwp'),
+    
+    %% NFZ Analysis
+    structure_strs = {'cw'};
+    toxicity_strs = {''};
+    
+    data_loc_str='Z:/elw/MATLAB/cw_analy/meta_data/MUTTER_MASTER_ChestWall_Cox_DiVj_DVHs_fx-1_a2bInf.mat';
+    atlas_loc_str='Z:/elw/MATLAB/cw_analy/atlases/latest/';
     
 else
     error(['runGenerateDvhAtlas:: Unknown analy_str: ',analy_str]);
