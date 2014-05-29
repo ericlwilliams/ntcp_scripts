@@ -1,6 +1,6 @@
 function runGenerateDvhAtlas
 
-analy_str='nfz';
+analy_str='eso';
 
 %% TODO Pooled analysis
 % need to incorporate institutes, somehow
@@ -23,6 +23,13 @@ elseif isequal(analy_str,'nfz'),
     data_loc_str='Z:/elw/MATLAB/nfz_analy/meta_data/';
     atlas_loc_str='Z:/elw/MATLAB/nfz_analy/atlases/';
 
+elseif isequal(analy_str,'eso')
+    structure_strs = {'ESOPHAGUS'};    
+    toxicity_strs = {'esotox'};    
+    data_loc_str='Z:/elw/MATLAB/nfz_analy/meta_data/';
+    atlas_loc_str='Z:/elw/MATLAB/nfz_analy/atlases/eso/latest/';
+    
+    
 elseif isequal(analy_str,'bpx');
     %% Bpx Analysis
     structure_strs = {'bp'};

@@ -79,6 +79,30 @@ elseif isequal(do_analysis,'nfz') % specifics loaded from arguments
     CGdata = CGobj_org;
     clear CGobj_org;
     
+elseif isequal(do_analysis,'eso')
+    
+     nfzKeySet = {'ESOPHAGUS'};
+    nfzValueSet = {'eso'};
+    nfzMapObj = containers.Map(nfzKeySet,nfzValueSet);
+    a2b='Inf';
+
+    % nfz meta data file to load
+    file_name = ['NFZ_',structure_str,'_',tox_str,'_a2b',a2b,'_acute_data.mat'];
+    
+    % set altas location/name
+    atlas_file_name = [atlas_loc,analy_str,'_',...
+                       nfzMapObj(structure_str),'_',...
+                       tox_str,'_aoc.xls']; %atlas location and file name
+    
+    load(strcat(data_loc,file_name),'CGobj_org');
+    CGdata = CGobj_org;
+    clear CGobj_org;
+    
+    
+    
+    
+    
+    
 elseif isequal(do_analysis,'bpx')
     
     % set altas location/name
